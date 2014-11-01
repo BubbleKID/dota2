@@ -20,7 +20,7 @@ function search($array, $key, $value)
     return $results;
 }
 
-//http://stackoverflow.com/questions/1019076/how-to-search-by-key-value-in-a-multidimensional-array-in-php/1019126#1019126
+////http://stackoverflow.com/questions/1019076/how-to-search-by-key-value-in-a-multidimensional-array-in-php/1019126#1019126
 //$arr = array(0 => array(id=>1,name=>"cat 1"),
       //       1 => array(id=>2,name=>"cat 2"),
           //   2 => array(id=>3,name=>"cat 1"));
@@ -43,67 +43,70 @@ function search($array, $key, $value)
  //       )
 //
 //)
-
-
-
-
-
-
 function heroout($heroid)
 {
 //$heroid=(string)($heroid-1);
-
-
 $contents = file_get_contents('json/heroes.json');
 $arr=json_decode($contents,TRUE);
-//echo 11111;
-
-
-
-//print_r(search($arr, 'id', '74'));
-
 $out=search($arr, 'id', $heroid);
-
-
 echo $out['0']['name'];
-
-//in_array("antimage",$arr['heroes'][0])
-//array_search(value,array,strict)
-//if (array_search("74",$arr))
-  //{
-  //echo "Match found";
-  //}
-//else
-//  {
- // echo "Match not found";
- // }
-
 
 //echo "<pre>";
 //print_r($arr);
 //echo "</pre>";
-
-
-
 $name=$out['0']['name'];
-
 $suffixes="eg";
+//eb 35x20px png
+//sb 59x33px
+//lg 205x11px 
+//full 256x114px
+//vert  234x272px  (jpg)
+$img="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_".$suffixes.".png";
+$img5="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_sb.png";
+$img2="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_lg.png";
+$img3="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_full.png";
+$img4="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_vert.jpg";
+echo "<img src=" . $img5.">";
+}
 
+function itemout($itemid)
+{
+//$heroid=(string)($heroid-1);
+$contents = file_get_contents('json/items.json');
+$arr=json_decode($contents,TRUE);
+
+$out=search($arr, 'id', $itemid);
+
+
+
+//echo $out['0']['name'];
+
+//echo "<pre>";
+//print_r($arr);
+//echo "</pre>";
+$name=$out['0']['name'];
+$suffixes="eg";
 //eb 35x20px png
 //sb 59x33px
 //lg 205x11px 
 //full 256x114px
 //vert  234x272px  (jpg)
 
-$img="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_".$suffixes.".png";
-$img5="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_sb.png";
-$img2="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_lg.png";
-$img3="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_full.png";
-$img4="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_vert.jpg";
+$imgept="img/items/empty.png";
+$img="http://media.steampowered.com/apps/dota2/images/items/".$name."_".$suffixes.".png";
 
-echo "<img src=" . $img5.">";
+if($itemid!=0)
+{
+	echo "<img src=" . $img.">";
+}
+else
+{
+	echo "<img src=" . $imgept.">";
+}
 
 }
+
+
 
 //heroout(5);
 //heroout(74);

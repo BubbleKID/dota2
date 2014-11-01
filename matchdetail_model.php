@@ -15,7 +15,7 @@ function kda($arr,$playernum)
   {
 	$kda=($kills+$assists)/$deaths;
   }
-  return $kda;
+  return round($kda ,1);
 }
 
 //参战率
@@ -45,7 +45,7 @@ function in_battle($arr,$playernum,$is_Radiant)
 	}
 
 	$in_battle=($kills+$assists)/$totalkills;
-	echo $in_battle;
+	echo round($in_battle*100)."%";
 }
 
 //计算伤害百分比
@@ -73,7 +73,7 @@ function damage_per($arr,$playernum,$is_Radiant)
 	}
 
 	$damage_per=$damages/$totaldamages;
-	echo $damage_per;
+	echo round($damage_per*100)."%";
 
 
 }
@@ -87,7 +87,7 @@ function show_items($arr,$playernum)
 		
 		for($i=0;$i<6;$i++)
 		{
-			echo $arr['result']['players'][$playernum]['item_'.$i].",";
+			echo itemout($arr['result']['players'][$playernum]['item_'.$i]);
 		}
 
 }
@@ -97,7 +97,7 @@ function show_items($arr,$playernum)
 
 include 'contact.php';
 
-$matchid=990460765;
+$matchid=994504802;
 
 $matchurl='https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=7F01018BA3A364C2B521AC080CB7B3C3&match_id='.$matchid;
 
@@ -178,12 +178,18 @@ $arr=json_decode($contents,TRUE);
 .tg .tg-vn4c{background-color:#D2E4FC}
 </style>
 <table class="tg" style="undefined;table-layout: fixed; width: 829px">
+
+比赛ID: <?php echo $matchid;?>
+
+
+<p></p>
+<table class="tg" style="undefined;table-layout: fixed; width: 829px">
 <colgroup>
 <col style="width: 39px">
 <col style="width: 86px">
-<col style="width: 85px">
-<col style="width: 81px">
-<col style="width: 83px">
+<col style="width: 95px">
+<col style="width: 40px">
+<col style="width: 75px">
 <col style="width: 59px">
 <col style="width: 64px">
 <col style="width: 71px">
@@ -191,18 +197,15 @@ $arr=json_decode($contents,TRUE);
 <col style="width: 54px">
 <col style="width: 47px">
 <col style="width: 80px">
-<col style="width: 150px">
-
-比赛ID: <?php echo $matchid;?>
-
+<col style="width: 250px">
 </colgroup>
   <tr>
-    <th class="tg-s6z2" colspan="12">天辉</th>
+    <th class="tg-s6z2" colspan="13">天辉</th>
     <th class="tg-031e"></th>
   </tr>
-  <tr>
+ <tr>
     <td class="tg-vn4c">No</td>
-    <td class="tg-vn4c">Player</td>
+    <td class="tg-vn4c">Player ID</td>
     <td class="tg-vn4c">Hero</td>
     <td class="tg-vn4c">KDA</td>
     <td class="tg-vn4c">参战率 </td>
@@ -224,10 +227,10 @@ $arr=json_decode($contents,TRUE);
     <td class="tg-031e"><?php echo $arr['result']['players'][0]['hero_damage']?></td>
     <td class="tg-031e"><?php echo damage_per($arr,0,1)?></td>
 	<td class="tg-031e"><?php echo $arr['result']['players'][0]['last_hits']?></td>
-	<td class="tg-0ord"><?php echo $arr['result']['players'][0]['xp_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][0]['gold_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][0]['tower_damage']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][0]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][0]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][0]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][0]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][0]['hero_healing']?></td>
 	<td class="tg-031e"><?php echo show_items($arr,0)?></td>
   </tr>
   <tr>
@@ -238,10 +241,10 @@ $arr=json_decode($contents,TRUE);
     <td class="tg-vn4c"><?php echo in_battle($arr,1,1)?></td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['hero_damage']?></td>
     <td class="tg-vn4c"><?php echo damage_per($arr,1,1)?></td></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][1]['last_hits']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][1]['xp_per_min']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][1]['gold_per_min']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][1]['tower_damage']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['last_hits']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['xp_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['gold_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['tower_damage']?></td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][1]['hero_healing']?></td>
 	<td class="tg-vn4c"><?php echo show_items($arr,1)?></td>
   </tr>
@@ -254,10 +257,10 @@ $arr=json_decode($contents,TRUE);
     <td class="tg-031e"><?php echo $arr['result']['players'][2]['hero_damage']?></td>
     <td class="tg-031e"><?php echo damage_per($arr,2,1)?></td>
 	<td class="tg-031e"><?php echo $arr['result']['players'][2]['last_hits']?></td>
-	<td class="tg-0ord"><?php echo $arr['result']['players'][2]['xp_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][2]['gold_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][2]['tower_damage']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][2]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][2]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][2]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][2]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][2]['hero_healing']?></td>
 	<td class="tg-031e"><?php echo show_items($arr,2)?></td>
   </tr>
   <tr>
@@ -268,10 +271,10 @@ $arr=json_decode($contents,TRUE);
     <td class="tg-vn4c"><?php echo in_battle($arr,3,1)?></td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['hero_damage']?></td>
     <td class="tg-vn4c"><?php echo damage_per($arr,3,1)?></td></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][3]['last_hits']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][3]['xp_per_min']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][3]['gold_per_min']?></td>
-    <td class="tg-ifyx"><?php echo $arr['result']['players'][3]['tower_damage']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['last_hits']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['xp_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['gold_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['tower_damage']?></td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][3]['hero_healing']?></td>
 	<td class="tg-vn4c"><?php echo show_items($arr,3)?></td>
   </tr>
@@ -284,10 +287,10 @@ $arr=json_decode($contents,TRUE);
     <td class="tg-031e"><?php echo $arr['result']['players'][4]['hero_damage']?></td>
     <td class="tg-031e"><?php echo damage_per($arr,4,1)?></td>
 	<td class="tg-031e"><?php echo $arr['result']['players'][4]['last_hits']?></td>
-	<td class="tg-0ord"><?php echo $arr['result']['players'][4]['xp_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][4]['gold_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][4]['tower_damage']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][4]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][4]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][4]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][4]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][4]['hero_healing']?></td>
 	<td class="tg-031e"><?php echo show_items($arr,4)?></td>
   </tr>
 </table>
@@ -297,27 +300,29 @@ $arr=json_decode($contents,TRUE);
 <colgroup>
 <col style="width: 39px">
 <col style="width: 86px">
-<col style="width: 72px">
-<col style="width: 81px">
-<col style="width: 83px">
+<col style="width: 95px">
+<col style="width: 40px">
+<col style="width: 75px">
 <col style="width: 59px">
 <col style="width: 64px">
 <col style="width: 71px">
 <col style="width: 60px">
 <col style="width: 54px">
 <col style="width: 47px">
-<col style="width: 113px">
+<col style="width: 80px">
+<col style="width: 250px">
 </colgroup>
   <tr>
-    <th class="tg-s6z2" colspan="11">夜魇</th>
+    <th class="tg-s6z2" colspan="13">夜魇</th>
     <th class="tg-031e"></th>
   </tr>
   <tr>
     <td class="tg-vn4c">No</td>
-    <td class="tg-vn4c">玩家</td>
+    <td class="tg-vn4c">Player ID</td>
     <td class="tg-vn4c">英雄</td>
     <td class="tg-vn4c">KDA</td>
-    <td class="tg-vn4c">参展率 </td>
+    <td class="tg-vn4c">参战率 </td>
+	<td class="tg-vn4c">伤害</td>
     <td class="tg-vn4c">伤害%</td>
     <td class="tg-vn4c">正/反补</td>
     <td class="tg-vn4c">经验/分钟</td>
@@ -329,74 +334,82 @@ $arr=json_decode($contents,TRUE);
   <tr>
     <td class="tg-031e">1</td>
     <td class="tg-031e"><?php echo $arr['result']['players'][5]['account_id']?></td>
-    <td class="tg-031e"><?php heroout( $arr['result']['players'][5]['hero_id']);?></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][5]['xp_per_min']?></td>
-    <td class="tg-0ord"><?php echo $arr['result']['players'][5]['gold_per_min']?></td>
-    <td class="tg-0ord">1:15</td>
-    <td class="tg-0ord">1:41</td>
-    <td class="tg-031e">123</td>
+    <td class="tg-031e"><?php heroout( $arr['result']['players'][5]['hero_id']); echo $arr['result']['players'][5]['level']?> </td>
+    <td class="tg-031e"><?php echo kda($arr,5);?></td>
+    <td class="tg-031e"><?php echo in_battle($arr,5,2)?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][5]['hero_damage']?></td>
+    <td class="tg-031e"><?php echo damage_per($arr,5,2)?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][5]['last_hits']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][5]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][5]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][5]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][5]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo show_items($arr,5)?></td>
   </tr>
   <tr>
     <td class="tg-vn4c">2</td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['account_id']?></td>
-    <td class="tg-vn4c"><?php heroout( $arr['result']['players'][6]['hero_id']);?></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-ifyx">15:30</td>
-    <td class="tg-ifyx">14:10</td>
-    <td class="tg-ifyx">15:45</td>
-    <td class="tg-ifyx">16:00</td>
-    <td class="tg-vn4c"></td>
+    <td class="tg-vn4c"><?php heroout( $arr['result']['players'][6]['hero_id']); echo $arr['result']['players'][6]['level']?> </td>
+    <td class="tg-vn4c"><?php echo kda($arr,6);?></td>
+    <td class="tg-vn4c"><?php echo in_battle($arr,6,2)?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['hero_damage']?></td>
+    <td class="tg-vn4c"><?php echo damage_per($arr,6,2)?></td></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['last_hits']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['xp_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['gold_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['tower_damage']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][6]['hero_healing']?></td>
+	<td class="tg-vn4c"><?php echo show_items($arr,6)?></td>
   </tr>
   <tr>
     <td class="tg-031e">3</td>
     <td class="tg-031e"><?php echo $arr['result']['players'][7]['account_id']?></td>
-    <td class="tg-031e"><?php heroout( $arr['result']['players'][7]['hero_id']);?></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-0ord">70%</td>
-    <td class="tg-0ord">55%</td>
-    <td class="tg-0ord">90%</td>
-    <td class="tg-0ord">88%</td>
-    <td class="tg-031e"></td>
+    <td class="tg-031e"><?php heroout( $arr['result']['players'][7]['hero_id']); echo $arr['result']['players'][7]['level']?> </td>
+    <td class="tg-031e"><?php echo kda($arr,7);?></td>
+    <td class="tg-031e"><?php echo in_battle($arr,7,2)?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][7]['hero_damage']?></td>
+    <td class="tg-031e"><?php echo damage_per($arr,7,2)?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][7]['last_hits']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][7]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][7]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][7]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][7]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo show_items($arr,7)?></td>
   </tr>
   <tr>
     <td class="tg-vn4c">4</td>
     <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['account_id']?></td>
-    <td class="tg-vn4c"><?php heroout( $arr['result']['players'][8]['hero_id']);?></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
-    <td class="tg-vn4c"></td>
+    <td class="tg-vn4c"><?php heroout( $arr['result']['players'][8]['hero_id']); echo $arr['result']['players'][8]['level']?> </td>
+    <td class="tg-vn4c"><?php echo kda($arr,8);?></td>
+    <td class="tg-vn4c"><?php echo in_battle($arr,8,2)?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['hero_damage']?></td>
+    <td class="tg-vn4c"><?php echo damage_per($arr,8,2)?></td></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['last_hits']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['xp_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['gold_per_min']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['tower_damage']?></td>
+    <td class="tg-vn4c"><?php echo $arr['result']['players'][8]['hero_healing']?></td>
+	<td class="tg-vn4c"><?php echo show_items($arr,8)?></td>
   </tr>
   <tr>
     <td class="tg-031e">5</td>
     <td class="tg-031e"><?php echo $arr['result']['players'][9]['account_id']?></td>
-    <td class="tg-031e"><?php heroout( $arr['result']['players'][9]['hero_id']);?></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
-    <td class="tg-031e"></td>
+    <td class="tg-031e"><?php heroout( $arr['result']['players'][9]['hero_id']); echo $arr['result']['players'][9]['level']?> </td>
+    <td class="tg-031e"><?php echo kda($arr,9);?></td>
+    <td class="tg-031e"><?php echo in_battle($arr,9,2)?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][9]['hero_damage']?></td>
+    <td class="tg-031e"><?php echo damage_per($arr,9,2)?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][9]['last_hits']?></td>
+	<td class="tg-031e"><?php echo $arr['result']['players'][9]['xp_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][9]['gold_per_min']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][9]['tower_damage']?></td>
+    <td class="tg-031e"><?php echo $arr['result']['players'][9]['hero_healing']?></td>
+	<td class="tg-031e"><?php echo show_items($arr,9)?></td>
   </tr>
 </table>
+
+</colgroup>
+
     </div><!-- /.container -->
 
 
