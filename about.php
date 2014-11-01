@@ -60,13 +60,9 @@
         
 		
 			<h1>Update Log</h1>
-			<h4>Version 0.02</h4>
-			<p><b>25/10/2014</b></p>
-			<p>add about page</p>
-			<p>add steam 32bit id converter</p>
-			<p></p>
-			<p><b>25/10/2014</b></p>
-			<p>add hero data function</p>
+			<h4>Version 0.04</h4>
+			<p><b>01/11/2014</b></p>
+			
 			
 			
     </div> <!-- /container -->

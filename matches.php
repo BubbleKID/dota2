@@ -3,6 +3,7 @@
 include 'idconvert.php';
 
 
+
 define ('API_KEY','7F01018BA3A364C2B521AC080CB7B3C3');
 $dota2id=109883310;
 //$dota2id= $_GET['id'];
@@ -21,18 +22,37 @@ $contents = file_get_contents($url);
 //$getcontent = iconv("gb2312", "utf-8",$contents); 
 //echo $contents; 
  
-$arr2=json_decode($contents,TRUE);
-//$json_string =json_encode($arr2) ;
-//echo "<script>";
-//echo "getProfile($contents)";
-//echo "</script>";/
-echo "<pre>";
+$arr=json_decode($contents,TRUE);
 
-print_r($arr2);
+
+
+$matchnum = count($arr['result']['matches']);//比赛场数
+
+//echo $matchnum;
+function matchout($arr,$matchnum)
+{
+	for($i=1;$i<$matchnum;$i++)
+	{
+
+		$matchid=$arr['result']['matches'][$i]['match_id'];
+		echo  "比赛ID: "."<a href='matchdetail_model.php?id=".$matchid."'>".$matchid."</a>";
+		echo "</p>";
+
+	}
+}
+
+//echo "<pre>";
+
+//print_r($arr2);
+
+
+
+
+
 // $arr2['response']['players'][0]['steamid'];
 
 //print $arr2['response']['players'][0]['avatarmedium'];
-echo "</pre>";
+//echo "</pre>";
 
 
 ?>
@@ -105,12 +125,9 @@ echo "</pre>";
 		
         <h5>
 		
-		<img src="<?php //print $arr2['response']['players'][0]['avatarmedium'];?>" class="img-circle">
+		<!-img src="<?php //print $arr2['response']['players'][0]['avatarmedium'];?>" class="img-circle"->
 		
-		<p>Name: <?php //print $arr2['response']['players'][0]['personaname'];?></p>
-		
-		<p>Steam ID: <?php //print $arr2['response']['players'][0]['steamid'];?></p>
-		<p>Dota2 ID: <?php// echo $dota2id;?></p>
+		<?php matchout($arr,$matchnum);?>
 		</h5>
 		
 		

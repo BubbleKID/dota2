@@ -97,7 +97,9 @@ function show_items($arr,$playernum)
 
 include 'contact.php';
 
-$matchid=994504802;
+//$matchid=994504802;
+
+$matchid=$_GET['id'];
 
 $matchurl='https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=7F01018BA3A364C2B521AC080CB7B3C3&match_id='.$matchid;
 

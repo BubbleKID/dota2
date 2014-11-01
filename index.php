@@ -60,7 +60,7 @@
         <h1>Dota2 Player Search</h1>
 		
 		
-        <p>Version 0.02</p>
+        <p>Version 0.04</p>
 		<div >
 			<form class="form-search" method="get" action="accdetail.php" >
 				<input class="input-medium search-query" name="id" type="text" placeholder="输入dota2 ID" /> 
