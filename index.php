@@ -1,144 +1,104 @@
+<?php
+
+
+
+session_start();
+
+
+unset($_SESSION['dota2id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Dota Mine</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <title>Dota Mine</title>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
   </head>
 
 
 
-<BODY  > 
+<body> 
  
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-		
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <nav  class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+      <div class="container">	
+		<div class="navbar-inner">
+		  <button type="button"  class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Dota Mine</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
+          <a class="navbar-brand" href="index.php">Dota Mine</a>
+		</div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
               <li class="active"><a href="index.php">Home</a></li>
               <li><a href="about.php">About</a></li>
               <li><a href="contact.php">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+          </ul>
+        </div><!--/.nav-collapse -->
+     </div>
+    </nav>
 
     <div class="container" >
 
-        <h1>Dota2 Player Search</h1>
+        <center><h1><center>Dota2 Player Search</h1></center>
 		
 		
-        <p>Version 0.04</p>
+        <center><p>Version 0.04</p></center>
 		<div >
-			<form class="form-search" method="get" action="accdetail.php" >
-				<input class="input-medium search-query" name="id" type="text" placeholder="输入dota2 ID" /> 
-				<button class="btn btn-info"  type="submit">查询</button>
+			<center>
+			<form class="form-search " method="get" action="accdetail.php" >
+				<input class="form-control input-lg" name="id" type="text" placeholder="输入dota2 ID" /> 
+				</p>
+				<button class="btn btn-info btn-lg"  type="submit">查询</button>
 				
 			</form>
+			</center>
 		</div>
 		
 		
 		
 		<!-- 16:9 aspect ratio -->
-		<div  class="embed-responsive embed-responsive-16by9">
+		<!--div  class="embed-responsive embed-responsive-16by9">
 			<iframe width="640" height="360" class="embed-responsive-item" src="http://staticlive.douyutv.com/common/share/play.swf?room_id=59813"></iframe>
-		</div>
+		</div-->
 		
 		
     </div> <!-- /container -->
 	
 	
-	
-	
-	<!--div class="container" >
-
-        <h3>Steam ID convert</h3>
-        
-		<div class="span12">
-			<form class="form-search" method="get" action="idconvert.php" >
-				<input class="input-medium search-query" name="steamid" type="text" placeholder="输入steam 64位ID" /> 
-				<button class="btn "  type="submit">转换</button>
-				
-			</form>
-		</div>
-		
-    </div> <!-- /container --
-
-    <!-- Le javascript
+  
+    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/bootstrap-transition.js"></script>
-    <script src="assets/js/bootstrap-alert.js"></script>
-    <script src="assets/js/bootstrap-modal.js"></script>
-    <script src="assets/js/bootstrap-dropdown.js"></script>
-    <script src="assets/js/bootstrap-scrollspy.js"></script>
-    <script src="assets/js/bootstrap-tab.js"></script>
-    <script src="assets/js/bootstrap-tooltip.js"></script>
-    <script src="assets/js/bootstrap-popover.js"></script>
-    <script src="assets/js/bootstrap-button.js"></script>
-    <script src="assets/js/bootstrap-collapse.js"></script>
-    <script src="assets/js/bootstrap-carousel.js"></script>
-    <script src="assets/js/bootstrap-typeahead.js"></script>
-
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
 
-<?php
-
-define ('API_KEY','7F01018BA3A364C2B521AC080CB7B3C3');
-define ('LANGUAGE', 'en_us');
-
-
-
-//$url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7F01018BA3A364C2B521AC080CB7B3C3&steamids=76561198157747566"; 
-//$contents = file_get_contents($url); 
-//如果出现中文乱码使用下面代码 
-//$getcontent = iconv("gb2312", "utf-8",$contents); 
-//echo $contents; 
- 
-//$arr2=json_decode($contents,TRUE);
-//$json_string =json_encode($arr2) ;
-//echo "<script>";
-//echo "getProfile($contents)";
-//echo "</script>";
-//echo "<pre>";
-
-//print_r($arr2);
-//print $arr2['response']['players'][0]['steamid'];;
-//echo "</pre>";
-
-
-?>
