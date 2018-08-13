@@ -1,4 +1,3 @@
 dota2
-=====
-
-这是我写的一个抄袭dotamax的网站顺便想弄一个猪队友鉴别系统
+====
+Steam api practice
