@@ -1,11 +1,9 @@
 <?php
 
-
-
 //search
 function search($array, $key, $value)
 {
-    $results = array();
+    $results = [];
 
     if (is_array($array)) {
         if (isset($array[$key]) && $array[$key] == $value) {
@@ -45,64 +43,54 @@ function search($array, $key, $value)
 //)
 function heroout($heroid)
 {
-	if($heroid!=0)
-	{
-
-		$contents = file_get_contents('json/heroes.json');
-		$arr=json_decode($contents,TRUE);
-		$out=search($arr, 'id', $heroid);
-		//echo $out['0']['name'];
-		$name=$out['0']['name'];
-		$suffixes="sb";
-		//eb 35x20px png
-		//sb 59x33px
-		//lg 205x11px 
-		//full 256x114px
-		//vert  234x272px  (jpg)
-		$img="http://media.steampowered.com/apps/dota2/images/heroes/".$name."_".$suffixes.".png";
-		echo "<img src=" . $img.">";
-	}
-	else
-	{
-		echo "<img src='assets/img/items/empty.png'>";
-	}
+    if ($heroid != 0) {
+        $contents = file_get_contents('json/heroes.json');
+        $arr = json_decode($contents, true);
+        $out = search($arr, 'id', $heroid);
+        //echo $out['0']['name'];
+        $name = $out['0']['name'];
+        $suffixes = 'sb';
+        //eb 35x20px png
+        //sb 59x33px
+        //lg 205x11px
+        //full 256x114px
+        //vert  234x272px  (jpg)
+        $img = 'http://media.steampowered.com/apps/dota2/images/heroes/'.$name.'_'.$suffixes.'.png';
+        echo '<img src='.$img.'>';
+    } else {
+        echo "<img src='assets/img/items/empty.png'>";
+    }
 }
 
 function itemout($itemid)
 {
-//$heroid=(string)($heroid-1);
-$contents = file_get_contents('json/items.json');
-$arr=json_decode($contents,TRUE);
+    //$heroid=(string)($heroid-1);
+    $contents = file_get_contents('json/items.json');
+    $arr = json_decode($contents, true);
 
-$out=search($arr, 'id', $itemid);
+    $out = search($arr, 'id', $itemid);
 
+    //echo $out['0']['name'];
 
+    //echo "<pre>";
+    //print_r($arr);
+    //echo "</pre>";
+    $name = $out['0']['name'];
+    $suffixes = 'eg';
+    //eb 35x20px png
+    //sb 59x33px
+    //lg 205x11px
+    //full 256x114px
+    //vert  234x272px  (jpg)
 
-//echo $out['0']['name'];
+    $imgept = 'assets/img/items/empty.png';
+    $img = 'http://media.steampowered.com/apps/dota2/images/items/'.$name.'_'.$suffixes.'.png';
 
-//echo "<pre>";
-//print_r($arr);
-//echo "</pre>";
-$name=$out['0']['name'];
-$suffixes="eg";
-//eb 35x20px png
-//sb 59x33px
-//lg 205x11px 
-//full 256x114px
-//vert  234x272px  (jpg)
-
-$imgept="assets/img/items/empty.png";
-$img="http://media.steampowered.com/apps/dota2/images/items/".$name."_".$suffixes.".png";
-
-if($itemid!=0)
-{
-	echo "<img src=" . $img.">";
-}
-else
-{
-	echo "<img src=" . $imgept.">";
-}
-
+    if ($itemid != 0) {
+        echo '<img src='.$img.'>';
+    } else {
+        echo '<img src='.$imgept.'>';
+    }
 }
 
 //echo "</pre>";

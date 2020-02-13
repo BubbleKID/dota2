@@ -1,59 +1,50 @@
 <?php
 session_start();
 include 'idconvert.php';
-define ('API_KEY','7F01018BA3A364C2B521AC080CB7B3C3');
+define('API_KEY', '7F01018BA3A364C2B521AC080CB7B3C3');
 
-if(isset($_SESSION['dota2id']))
-{
-	//$dota2id= $_GET['id'];
-	$dota2id=$_SESSION['dota2id'];
-	$playerid=MAKE_64_BIT($dota2id);
-	
+if (isset($_SESSION['dota2id'])) {
+    //$dota2id= $_GET['id'];
+    $dota2id = $_SESSION['dota2id'];
+    $playerid = MAKE_64_BIT($dota2id);
+
 //echo "设置".$dota2id."    ".$playerid;
-}
-else
-{
-	$dota2id=$_GET['id'];
-	$playerid=MAKE_64_BIT($dota2id);
-	$_SESSION['dota2id']=$dota2id;
-	
-	
-//echo "未设置". $dota2id;
+} else {
+    $dota2id = $_GET['id'];
+    $playerid = MAKE_64_BIT($dota2id);
+    $_SESSION['dota2id'] = $dota2id;
+
+    //echo "未设置". $dota2id;
 }
 
-	//$dota2id=$_GET['id'];
-	//$_SESSION['dota2id']=$dota2id;
-
+    //$dota2id=$_GET['id'];
+    //$_SESSION['dota2id']=$dota2id;
 
 //if(isset($_SESSION['playerid']))
 //{
-	//$playerid=MAKE_64_BIT($_GET['id']);
-	//$playerid=$_SESSION['playerid'];
+    //$playerid=MAKE_64_BIT($_GET['id']);
+    //$playerid=$_SESSION['playerid'];
 //}
 //else
 //{
 //	$playerid=MAKE_64_BIT($_GET['id']);
-	//$_SESSION['playerid']=$playerid;
+    //$_SESSION['playerid']=$playerid;
 //}
-
-
-
-
 
 //
 
 //steamids=76561198157747566
-$url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7F01018BA3A364C2B521AC080CB7B3C3&steamids=".$playerid; 
-$lastmatch ="https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=7F01018BA3A364C2B521AC080CB7B3C3&account_id=".$playerid."&matches_requested=1";
+$url = 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7F01018BA3A364C2B521AC080CB7B3C3&steamids='.$playerid;
+$lastmatch = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=7F01018BA3A364C2B521AC080CB7B3C3&account_id='.$playerid.'&matches_requested=1';
 //echo " last";
 //echo $lastmatch;
 
-$contents = file_get_contents($url); 
-//如果出现中文乱码使用下面代码 
-//$getcontent = iconv("gb2312", "utf-8",$contents); 
-//echo $contents; 
- 
-$arr2=json_decode($contents,TRUE);
+$contents = file_get_contents($url);
+//如果出现中文乱码使用下面代码
+//$getcontent = iconv("gb2312", "utf-8",$contents);
+//echo $contents;
+
+$arr2 = json_decode($contents, true);
 //$json_string =json_encode($arr2) ;
 //echo "<script>";
 //echo "getProfile($contents)";
@@ -65,7 +56,6 @@ $arr2=json_decode($contents,TRUE);
 
 //print $arr2['response']['players'][0]['avatarmedium'];
 //echo "</pre>";
-
 
 ?>
 
@@ -136,12 +126,12 @@ $arr2=json_decode($contents,TRUE);
 		
         <h5>
 		
-		<img src="<?php print $arr2['response']['players'][0]['avatarmedium'];?>" class="img-circle">
+		<img src="<?php echo $arr2['response']['players'][0]['avatarmedium']; ?>" class="img-circle">
 		
-		<p>Name: <?php print $arr2['response']['players'][0]['personaname'];?></p>
+		<p>Name: <?php echo $arr2['response']['players'][0]['personaname']; ?></p>
 		
-		<p>Steam ID: <?php print $arr2['response']['players'][0]['steamid'];?></p>
-		<p>Dota2 ID: <?php echo $dota2id;?></p>
+		<p>Steam ID: <?php echo $arr2['response']['players'][0]['steamid']; ?></p>
+		<p>Dota2 ID: <?php echo $dota2id; ?></p>
 		</h5>
 		
 		

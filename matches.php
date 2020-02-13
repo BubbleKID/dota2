@@ -1,41 +1,36 @@
 <?php
 session_start();
 include 'idconvert.php';
-define ('API_KEY','7F01018BA3A364C2B521AC080CB7B3C3');
-$dota2id=$_SESSION['dota2id'];
+define('API_KEY', '7F01018BA3A364C2B521AC080CB7B3C3');
+$dota2id = $_SESSION['dota2id'];
 //$dota2id= $_GET['id'];
 //$playerid=MAKE_64_BIT($_GET['id']);
 //$playerid=MAKE_64_BIT(109883310);
-$playerid=MAKE_64_BIT($_SESSION['dota2id']);
+$playerid = MAKE_64_BIT($_SESSION['dota2id']);
 //https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001/
 //steamids=76561198157747566
-$url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001/?key=7F01018BA3A364C2B521AC080CB7B3C3&account_id=".$dota2id."&matches_requested=10";;
+$url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001/?key=7F01018BA3A364C2B521AC080CB7B3C3&account_id='.$dota2id.'&matches_requested=10';
 //$lastmatch ="https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=7F01018BA3A364C2B521AC080CB7B3C3&account_id=".$playerid."&matches_requested=1";
 //echo " last";
 //echo $lastmatch;
 
-$contents = file_get_contents($url); 
-//如果出现中文乱码使用下面代码 
-//$getcontent = iconv("gb2312", "utf-8",$contents); 
-//echo $contents; 
- 
-$arr=json_decode($contents,TRUE);
+$contents = file_get_contents($url);
+//如果出现中文乱码使用下面代码
+//$getcontent = iconv("gb2312", "utf-8",$contents);
+//echo $contents;
 
-
+$arr = json_decode($contents, true);
 
 //$matchnum = count($arr['result']['matches']);//比赛场数
 
 //echo $matchnum;
-function matchout($arr,$matchnum)
+function matchout($arr, $matchnum)
 {
-	for($i=0;$i<10;$i++)
-	{
-
-		$matchid=$arr['result']['matches'][$i]['match_id'];
-		echo  "比赛ID:".($i+1)."  <a href='matchdetail_model.php?id=".$matchid."'>".$matchid."</a>";
-		echo "</p>";
-
-	}
+    for ($i = 0; $i < 10; $i++) {
+        $matchid = $arr['result']['matches'][$i]['match_id'];
+        echo  '比赛ID:'.($i + 1)."  <a href='matchdetail_model.php?id=".$matchid."'>".$matchid.'</a>';
+        echo '</p>';
+    }
 }
 
 //echo "<pre>";
@@ -43,7 +38,6 @@ function matchout($arr,$matchnum)
 //print_r($arr2);
 
 //echo "</pre>";
-
 
 ?>
 
@@ -113,7 +107,7 @@ function matchout($arr,$matchnum)
 		
        
 		<h5>Last 10 Matches:</h5>
-		<h5><?php matchout($arr,10);?></h5>
+		<h5><?php matchout($arr, 10); ?></h5>
 		
 		
 		
